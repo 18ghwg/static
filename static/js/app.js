@@ -1,5 +1,5 @@
 "use strict";
-console.log(' %c Theme Cuteen v4.1(20201213) %c https://blog.zwying.com/ ', 'color: #fff; background: #2dce89; padding:5px;', 'background: #1c2b36; padding:5px;');
+console.log(' %c Theme Cuteen v4.2(20210123) %c https://blog.zwying.com/ ', 'color: #fff; background: #2dce89; padding:5px;', 'background: #1c2b36; padding:5px;');
 //----------------------------------------添加、删除Class---------------------------------------
 function hasClass(obj, cls) {
     return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
@@ -208,7 +208,6 @@ const Cuteen = {
     ajaxComment: function () {
         const fm = document.getElementById('comment-form');
         const action = fm.getAttribute('data-action');
-        console.log(action);
         fm.onsubmit = function (e) {
             e.preventDefault();
             let fmData = new FormData(fm);
@@ -217,6 +216,8 @@ const Cuteen = {
                     const parser = new DOMParser();
                     const convert = parser.parseFromString(response.data, "text/html");//字符串转换为dom
                     const error = new RegExp('Typecho_Widget_Exception');
+                    const check = new RegExp('对不起');
+                    const nick = new RegExp('已经被注册');
                     if (error.test(response.data)) {
                         Toastify({
                             duration: 3000,
@@ -226,8 +227,29 @@ const Cuteen = {
                             className: "info",
                         }).showToast();
                         console.log(response.data);
-                    } else {
-                        console.log('回复提交成功！');
+                    }
+                    else if(check.test(response.data)){
+                        Toastify({
+                            duration: 5000,
+                            position: 'center',
+                            text: '<svg class="icon icon-20" aria-hidden="true"><use xlink:href="#alert-circle"></use></svg>您有评论正在审核!暂时不能评论',
+                            backgroundColor: "var(--bs-info)",
+                            className: "info",
+                        }).showToast();
+                        console.log(response.data);
+                    }
+                    else if(nick.test(response.data)){
+                        Toastify({
+                            duration: 5000,
+                            position: 'center',
+                            text: '<svg class="icon icon-20" aria-hidden="true"><use xlink:href="#x-circle"></use></svg>昵称不能和站长一致!',
+                            backgroundColor: "var(--bs-danger)",
+                            className: "info",
+                        }).showToast();
+                        console.log(response.data);
+                    }
+                    else {
+                        //console.log('回复提交成功！');
                         document.getElementById("comment-textarea").value = "";//清空回复
                         window.TypechoComment.cancelReply();//复位回复框
                         const newIdNumber = response.data.match(/id=\"?comment-\d+/g).join().match(/\d+/g).sort(
@@ -238,7 +260,7 @@ const Cuteen = {
                         const newId = 'comment-'.concat(newIdNumber);
                         const oldList = document.getElementsByClassName('comment-list');
                         const newList = convert.getElementsByClassName('comment-list')[0].outerHTML;//获取新列表
-                        console.log(oldList)
+                        //console.log(oldList)
                         if (oldList.length > 0) {
                             oldList[0].remove();//移除旧列表
                         }
