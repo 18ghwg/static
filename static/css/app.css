@@ -27,10 +27,6 @@ body{
 [data-toggle="tooltip"] * {
     pointer-events: none;
 }
-span{
-    display: inline-flex;
-    align-items: center;
-}
 hr{
     background-color: whitesmoke;
     opacity: unset;
@@ -70,7 +66,21 @@ a.a-none,.post-nav a {
     opacity: 1;
     transition: opacity 0.5s;
 }
-
+.postTags a{
+    border-radius: 50rem!important;
+    color: var(--bs-primary);
+    border-color: var(--bs-primary);
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-decoration: none;
+    margin: 0 2px;
+    border: 1.5px solid;
+}
 .dropdown-toggle::after {
     transition: transform 0.15s linear;
 }
