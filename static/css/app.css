@@ -1347,7 +1347,11 @@ img.emoji {
 #post table:not(.hljs-ln) tbody tr {
     background-color: #fff
 }
-
+#NextButton,.NextLoading{
+    width: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
 .next {
     text-align: center;
 }
