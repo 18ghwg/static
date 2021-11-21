@@ -1,24 +1,4 @@
-// $(function Acc() {
-//     $(".accordion > .accordion-item.open").children(".accordion-panel").slideDown();
-//     $(".accordion  .accordion-thumb").on('click',function () {
-//         $(this).parent().siblings(".accordion-item").removeClass("open").children(".accordion-panel").slideUp();
-//         $(this).parent().toggleClass("open").children(".accordion-panel").slideToggle("ease-out");
-//     });
-// });
-// $(function Tab() {
-//     $(".tabs-item:first").addClass("active");
-//     $(".tabs-content:first").addClass("active");
-//     $(".tabs-item").on('click',function () {
-//         $(this).addClass("active");
-//         $(this).siblings(this).removeClass("active");
-//         $(".tabs-content").siblings(".tabs-content").removeClass("active");
-//         $(".tabs-content").eq($(this).index()).addClass("active");
-//     });
-// });
 window.onload = function () {
-    // document.querySelector(".tabLinks").classList.add("active");
-    // document.querySelector(".tabContent").classList.add("active");
-
     const span = document.querySelectorAll('.tabLinks');     //css选择器
     const div = document.querySelectorAll('.tabContent');
     span[0].classList.add('active');
@@ -34,6 +14,5 @@ window.onload = function () {
             div[i].classList.add('active');
         }
     }
-
 }
 
