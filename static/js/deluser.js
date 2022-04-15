@@ -8,8 +8,6 @@ $('#delsubmit').click(function () {
     ;
     var xuehao = $('#delxuehao').val();  // 学号
     var mima = $('#delmima').val();      // 密码
-    var email = $('#delemail').val();  // 邮箱
-    var beizhu = $('#delbeizhu').val();   // 备注
     ;
     if (xuehao == '') {
         $('#delxuehao').focus();
@@ -18,26 +16,8 @@ $('#delsubmit').click(function () {
         });
         return false;
     } else if (mima == '') {
-        $('#delmima').focus();
+        $('#mima').focus();
         layer.tips('请填你的密码', '#delmima', {
-            tips: [1, '#FF3366'],
-        });
-        return false;
-    } else if (email === '') {
-        $('#delemail').focus();
-        layer.tips('请填写QQ邮箱', '#delemail', {
-            tips: [1, '#FF3366'],
-        });
-        return false;
-    } else if (email.search('@') === -1) {
-        $('#delemail').focus();
-        layer.tips('请填写完整QQ邮箱，以便通知你！', '#delemail', {
-            tips: [1, '#FF3366'],
-        });
-        return false;
-    } else if (beizhu == '') {
-        $('#delbeizhu').focus();
-        layer.tips('请填备注！', '#delbeizhu', {
             tips: [1, '#FF3366'],
         });
         return false;
